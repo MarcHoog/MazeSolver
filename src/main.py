@@ -1,13 +1,15 @@
-from graphics import Window, Line, Point
+from graphics import Window,
+from cell import Cell 
 
 def main():
     window = Window(800, 600)
-    line1 = Line(Point(100, 100), Point(200, 200))
-    line2 = Line(Point(200, 200), Point(300, 100))
-    line3 = Line(Point(300, 100), Point(400, 200))
-    window.draw_line(line1, 'red')
-    window.draw_line(line2, 'green')
-    window.draw_line(line3, 'blue')
+    cell1 = cell = Cell(window, 100, 100, 200, 200)
+    cell2 = cell = Cell(window, 100, 100, 300, 200)
+    cell3 = cell = Cell(window, 100, 100, 400, 200)
+    cell1.has_left_wall = False
+    cell1.draw('red')
+    cell2.draw('green')
+    cell3.draw('blue')
     window.wait_to_close()
     
 if __name__ == '__main__':
