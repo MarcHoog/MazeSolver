@@ -2,32 +2,47 @@ from graphics import Window, Line, Point
 
 class Cell:
     
-    def __init__(self,window, width, height, x, y):
+    def __init__(self,window, width, height):
         self._window = window        
 
         self._width = width
         self._height = height
         
-        self._x = x
-        self._y = y
-        
-        self._x2 = x + width
-        self._y2 = y + height
-        
+        self._x = None
+        self._y = None
+                
+        self.visited = False
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
         
-    def draw(self, fill_color='black'):
+    def draw(self, x, y, fill_color='black'):
+        
+        self._x = x
+        self._y = y
+        
+        _x2 = x + self._width
+        _y2 = y + self._height        
         if self.has_left_wall:
-            self._window.draw_line(Line(Point(self._x, self._y), Point(self._x, self._y2)), fill_color)
+            self._window.draw_line(Line(Point(self._x,self._y), Point(self._x, _y2)), fill_color)
+        else:
+            self._window.draw_line(Line(Point(self._x, self._y), Point(self._x, _y2)), "white")        
+    
         if self.has_right_wall:
-            self._window.draw_line(Line(Point(self._x2, self._y), Point(self._x2, self._y2)), fill_color)
+            self._window.draw_line(Line(Point(_x2, self._y), Point(_x2, _y2)), fill_color)
+        else:
+            self._window.draw_line(Line(Point(_x2, self._y), Point(_x2, _y2)), "white")
+            
         if self.has_top_wall:
-            self._window.draw_line(Line(Point(self._x, self._y), Point(self._x2, self._y)), fill_color)
+            self._window.draw_line(Line(Point(self._x, self._y), Point(_x2, self._y)), fill_color)
+        else:
+            self._window.draw_line(Line(Point(self._x, self._y), Point(_x2, self._y)), "white")
+        
         if self.has_bottom_wall:
-            self._window.draw_line(Line(Point(self._x, self._y2), Point(self._x2, self._y2)), fill_color)
+            self._window.draw_line(Line(Point(self._x, _y2), Point(_x2, _y2)), fill_color)
+        else:
+            self._window.draw_line(Line(Point(self._x, _y2), Point(_x2, _y2)), "white")
     
     def __get_move_color(self, undo):
         if undo:
