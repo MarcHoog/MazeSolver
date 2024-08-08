@@ -43,18 +43,18 @@ class Cell:
             self._window.draw_line(Line(Point(self._x, _y2), Point(_x2, _y2)), fill_color)
         else:
             self._window.draw_line(Line(Point(self._x, _y2), Point(_x2, _y2)), "white")
-    
-    def __get_move_color(self, undo):
-        if undo:
-            return 'red'
-        else:
-            return 'gray'
-    
+       
     def draw_move(self, to_cell, undo=False):
+        
+        if undo:
+            color = 'red'
+        else:
+            color = 'gray'
+        
         center =  Point(self._x + self._width // 2, self._y + self._height // 2)
         to_center = Point(to_cell._x + to_cell._width // 2, to_cell._y + to_cell._height // 2)    
         
-        self._window.draw_line(Line(center, to_center), self.__get_move_color(undo))
+        self._window.draw_line(Line(center, to_center), color)
         
     def __str__(self):
         return f'Cell(x={self._x}, y={self._y}, width={self._width}, height={self._height})'

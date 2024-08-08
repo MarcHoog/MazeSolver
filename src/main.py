@@ -3,11 +3,10 @@ from cell import Cell
 from maze import Maze
 
 def main():
-    window = Window(900, 900)
-    maze = Maze(window, 50, 50, 25, 25, 32, 32)
+    window = Window(1800, 1800)
+    maze = Maze(window, 50, 50, 100,100 , 16, 16)
     maze.draw()
-    maze._break_entrance_and_exit()
-    maze._break_walls_r(0,0)
+    maze.solve()
     window.wait_to_close()
     
 if __name__ == '__main__':
